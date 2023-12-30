@@ -164,6 +164,15 @@ def set_debug(ctx, param, debug):
     help="IETF language tag. Language to speak in. List documented tags with --all.",
 )
 @click.option(
+    "-g",
+    "--gender",
+    metavar="<m|f>",
+    default="f",
+    show_default=True,
+    callback=validate_lang,
+    help="Specify the gender. Use 'm' for male or 'f' for female. (default: 'f')",
+)
+@click.option(
     "-t",
     "--tld",
     metavar="<tld>",
@@ -225,7 +234,7 @@ def tts_cli(text, file, output, speed, tld, lang, nocheck):
     # TTS
     try:
         tts = NaverTTS(
-            text=text, lang=lang, speed=speed, tld=tld, lang_check=not nocheck
+            text=text, lang=lang, gender=gender, speed=speed, tld=tld, lang_check=not nocheck
         )
         tts.write_to_fp(output)
     except (ValueError, AssertionError) as e:

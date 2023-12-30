@@ -180,7 +180,7 @@ def set_debug(ctx, param, debug):
     metavar="<m|f>",
     default="f",
     show_default=True,
-    callback=validate_gender,
+    # callback=validate_gender,
     help="Specify the gender. Use 'm' for male or 'f' for female. (default: 'f')",
 )
 @click.option(

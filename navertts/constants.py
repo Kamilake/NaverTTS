@@ -103,7 +103,7 @@ SPEAKERS = {
         "nyounghwa" : "nyounghwa",
         "nshasha" : "nshasha",
         "vgoeun" : "vgoeun"
-    }
+    },
     "zh": {"f": "meimei", "m": "liangliang"},
 }
 

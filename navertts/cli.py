@@ -91,7 +91,18 @@ def validate_speed(ctx, param, speed):
             "Choose from ['slow', 'normal', 'fast'] or "
             "an integer between -5 (fast) and 5 (slow)." % speed
         )
+    
+def validate_gender(ctx, param, gender):
+  """Validate <gender> option.
 
+  Ensures <gender> is either 'm' or 'f'
+  """
+  if gender in ['m', 'f']:
+    return gender
+
+  raise click.UsageError(
+    "'%s' is not a valid gender. Choose 'm' for male or 'f' for female." % gender
+  )
 
 def print_languages(ctx, param, value):
     """Print all languages.
@@ -169,7 +180,7 @@ def set_debug(ctx, param, debug):
     metavar="<m|f>",
     default="f",
     show_default=True,
-    callback=validate_lang,
+    callback=validate_gender,
     help="Specify the gender. Use 'm' for male or 'f' for female. (default: 'f')",
 )
 @click.option(
@@ -208,7 +219,7 @@ def set_debug(ctx, param, debug):
     help="Show debug information.",
 )
 @click.version_option(version=__version__)
-def tts_cli(text, file, output, speed, tld, lang, nocheck):
+def tts_cli(text, file, output, gender, speed, tld, lang, nocheck):
     """Read <text> to mp3 format using NAVER Papago's Text-to-Speech API.
 
     (set <text> or --file <file> to - for standard input)
